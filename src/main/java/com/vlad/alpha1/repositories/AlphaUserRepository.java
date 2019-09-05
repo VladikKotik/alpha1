@@ -13,4 +13,9 @@ public interface AlphaUserRepository extends CrudRepository<AlphaUser,Long> {
     Optional<AlphaUser> findById(Long id);
 
     List<AlphaUser> findAll();
+
+   // AlphaUser findAlphaUserByLoginEqualsAndPasswordEquals(String login, String password);
+
+    AlphaUser findByLoginAndPassword(String login,String password);
+
 }

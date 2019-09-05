@@ -21,16 +21,11 @@ public class GreetingController {
     @Autowired
     private AlphaUserRepository alphaUserRepository;
     public void initData() {
-        AlphaUser user1 = new AlphaUser();
-        user1.setLogin("jora");
-        user1.setPassword("228");
-        user1.setBlocked(false);
-        AlphaUser user2 = new AlphaUser();
-        user2.setLogin("jora2");
-        user2.setPassword("229");
-        user2.setBlocked(false);
+        AlphaUser user1 = new AlphaUser("jora","228");
+        AlphaUser user2 = new AlphaUser("jora2","229");
         alphaUserRepository.save(user1);
         alphaUserRepository.save(user2);
+
 
     }
 
@@ -43,5 +38,13 @@ public class GreetingController {
     public List<AlphaUser> findAll(){
         initData();
         return alphaUserRepository.findAll();
+    }
+
+
+    @RequestMapping("/userjora")
+    public AlphaUser findjora(){
+        //initData();
+        //return alphaUserRepository.findAll();
+        return alphaUserRepository.findByLoginAndPassword("jora","228");
     }
 }

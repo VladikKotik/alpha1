@@ -28,6 +28,12 @@ public class AlphaUser {
     @Column(name = "Blocked")
     private boolean blocked;
 
+    public AlphaUser(String login, String password){
+        this.login=login;
+        this.password=password;
+        this.blocked=false;
+    }
+
     public Long getId(){
         return id;
     }
