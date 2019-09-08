@@ -5,6 +5,9 @@ import com.vlad.alpha1.repositories.AlphaUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+
 @Service
 public class AlphaUserServiceImpl implements AlphaUserService {
 
@@ -21,19 +24,29 @@ public class AlphaUserServiceImpl implements AlphaUserService {
     }
 
     @Override
-    public AlphaUser updateLoginPassword(String login, String password) {
-        return null;
+    public AlphaUser updateLoginPassword(Long id,String login, String password) {
+        AlphaUser user=alphaUserRepository.findById(id).get();
+        user.setLogin(login);
+        user.setPassword(password);
+        return alphaUserRepository.save(user);
+
     }
 
     @Override
-    public AlphaUser blockUser(Long id) {
-
-        return null;
+    public AlphaUser banUser(Long id) {
+        AlphaUser user=alphaUserRepository.findById(id).get();
+        user.setBlocked(true);
+        return alphaUserRepository.save(user);
     }
 
     @Override
     public AlphaUser getUserByLoginPassword(String login, String password) {//сначала думал только id возвращать, потом решил вообще юзера целиком возвращать
 
         return alphaUserRepository.findByLoginAndPassword(login,password);
+    }
+
+    @Override
+    public List<AlphaUser> findAll(){
+        return alphaUserRepository.findAll();
     }
 }
