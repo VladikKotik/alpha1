@@ -1,4 +1,4 @@
-package com.vlad.alpha1.Model;
+package com.vlad.alpha1.model;
 
 
 import lombok.*;
@@ -26,6 +26,6 @@ public class AlphaUser {
     private String password;
 
     @Column(name = "Blocked")
-    private boolean blocked=false;
+    private boolean blocked = false;
 
 }

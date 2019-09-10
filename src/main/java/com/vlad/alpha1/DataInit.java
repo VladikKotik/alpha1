@@ -12,16 +12,16 @@ public class DataInit implements ApplicationRunner {
     private AlphaUserService alphaUserService;
 
     @Autowired
-    public DataInit(AlphaUserService alphaUserService){
-        this.alphaUserService=alphaUserService;
+    public DataInit(AlphaUserService alphaUserService) {
+        this.alphaUserService = alphaUserService;
     }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        alphaUserService.addUser("jora","228");
-        alphaUserService.addUser("jora2","229");
-        alphaUserService.addUser("nissan","skyline");
-        alphaUserService.addUser("toyota","supra");
-        alphaUserService.addUser("honda","nsx");
+        alphaUserService.addUser("jora", "228");
+        alphaUserService.addUser("jora2", "229");
+        alphaUserService.addUser("nissan", "skyline");
+        alphaUserService.addUser("toyota", "supra");
+        alphaUserService.addUser("honda", "nsx");
     }
 }

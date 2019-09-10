@@ -1,6 +1,6 @@
-package com.vlad.alpha1.Controller;
+package com.vlad.alpha1.controller;
 
-import com.vlad.alpha1.Model.AlphaUser;
+import com.vlad.alpha1.model.AlphaUser;
 import com.vlad.alpha1.service.AlphaUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +34,7 @@ public class AlphaController {
         return alphaUserService.getUserByLoginPassword(login, password);
     }
 
-    @RequestMapping(value = "/add",method=RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public AlphaUser add(@RequestParam(value = "login") String login,
                          @RequestParam(value = "password") String password) throws Exception {
         return alphaUserService.addUser(login, password);
