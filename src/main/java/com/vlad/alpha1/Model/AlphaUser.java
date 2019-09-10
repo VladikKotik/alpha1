@@ -5,8 +5,8 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Setter
 @Getter
@@ -26,43 +26,6 @@ public class AlphaUser {
     private String password;
 
     @Column(name = "Blocked")
-    private boolean blocked;
+    private boolean blocked=false;
 
-    public AlphaUser(String login, String password){
-        this.login=login;
-        this.password=password;
-        this.blocked=false;
-    }
-
-    public Long getId(){
-        return id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public boolean isBlocked() {
-        return blocked;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setBlocked(boolean blocked) {
-        this.blocked = blocked;
-    }
 }

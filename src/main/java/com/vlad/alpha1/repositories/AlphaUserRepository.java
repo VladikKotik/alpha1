@@ -10,9 +10,8 @@ import java.util.Optional;
 @Repository
 public interface AlphaUserRepository extends CrudRepository<AlphaUser, Long> {
 
-    Optional<AlphaUser> findById(Long id);
     List<AlphaUser> findAll();
-    AlphaUser findByLoginAndPassword(String login,String password);
-
+    Optional<AlphaUser> findByLoginAndPassword(String login, String password);
+    Boolean existsAlphaUserByLogin(String login);
 
 }

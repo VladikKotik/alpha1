@@ -4,6 +4,7 @@ import com.vlad.alpha1.Model.AlphaUser;
 import com.vlad.alpha1.service.AlphaUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,36 +16,41 @@ public class AlphaController {
     private AlphaUserService alphaUserService;
 
     @Autowired
-    public AlphaController(AlphaUserService alphaUserService){
-        this.alphaUserService=alphaUserService;
+    public AlphaController(AlphaUserService alphaUserService) {
+        this.alphaUserService = alphaUserService;
     }
 
-    @RequestMapping("/allusers")
+    //пусть методы будут подписаны, мол, исключения кидают, необработанно, в логах то они все равно не нужны,
+    // такие то нужны только для того, чтоб пользователю показать
+
+    @RequestMapping(value = "/allusers", method = RequestMethod.GET)
     public List<AlphaUser> findAll() {
         return alphaUserService.findAll();
     }
 
-    @RequestMapping("/auth")
+    @RequestMapping(value = "/auth", method = RequestMethod.GET)
     public AlphaUser auth(@RequestParam(value = "login") String login,
-                          @RequestParam(value = "password") String password) {
+                          @RequestParam(value = "password") String password) throws Exception {
         return alphaUserService.getUserByLoginPassword(login, password);
     }
 
-    @RequestMapping("/add")
+    @RequestMapping(value = "/add",method=RequestMethod.POST)
     public AlphaUser add(@RequestParam(value = "login") String login,
-                         @RequestParam(value = "password") String password) {
-        return alphaUserService.addUser(login,password);
+                         @RequestParam(value = "password") String password) throws Exception {
+        return alphaUserService.addUser(login, password);
     }
 
-    @RequestMapping("/ban")
-    public AlphaUser ban(@RequestParam(value = "id")Long id){
+    @RequestMapping(value = "/ban", method = RequestMethod.PUT)
+    public AlphaUser ban(@RequestParam(value = "id") Long id) throws Exception {
         return alphaUserService.banUser(id);
     }
 
-    @RequestMapping("/upd")
-    public AlphaUser upd(@RequestParam(value = "id") Long id,
-            @RequestParam(value = "newlogin") String newLogin,
-            @RequestParam(value = "newpassword") String newPassword) {
-        return alphaUserService.updateLoginPassword(id, newLogin,newPassword);
+    @RequestMapping(value = "/upd", method = RequestMethod.PUT)
+    public AlphaUser upd(@RequestParam(value = "oldlogin") String oldLogin,
+                         @RequestParam(value = "oldpassword") String oldPassword,
+                         @RequestParam(value = "newlogin") String newLogin,
+                         @RequestParam(value = "newpassword") String newPassword) throws Exception {
+        return alphaUserService.updateLoginPassword(oldLogin, oldPassword, newLogin, newPassword);
     }
+
 }
